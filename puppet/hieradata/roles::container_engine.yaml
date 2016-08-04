@@ -1,0 +1,22 @@
+---
+  # https://forge.puppetlabs.com/KyleAnderson/consul/readme#service-definition
+  consul::services:
+    vault-ui:
+      port: 8080
+
+  docker::images::images:
+    vault-ui:
+      docker_dir: '/usr/lib/vault-ui'
+
+  docker::run_instance::instance:
+    vault-ui:
+      image: 'vault-ui'
+      ports:
+        - '3030'
+        - '8080'
+      expose:
+        - '3030'
+        - '8080'
+      env:
+        - 'VAULT_HOST=vault-01.example.com'
+        - 'CONSUL_HOST=vault-01.example.com'

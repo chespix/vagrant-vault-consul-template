@@ -1,0 +1,33 @@
+---
+  # Consul agent configuration
+  consul::config_hash:
+    data_dir: /opt/consul
+    datacenter: dc1
+    log_level: INFO
+    enable_syslog: true
+    node_name: "%{::hostname}"
+    retry_join:
+      - consul-01
+
+  # DNS forwarding for Consul
+  dnsmasq::configs:
+    consul:
+      content: |
+        server=/service.consul/127.0.0.1#8600
+        server=169.254.169.253
+  resolv_conf::domainname: service.consul
+  resolv_conf::nameservers:
+    - 8.8.8.8
+    - 127.0.0.1
+
+ # Vault
+  vault::config_hash:
+    backend:
+      consul:
+        advertise_addr: "h
+        ttp://%{::ipaddress}"
+        path: 'vault/'
+    listener:
+      tcp:
+        address: "0.0.0.0:8200"
+        tls_disable: 1

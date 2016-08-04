@@ -1,0 +1,22 @@
+# Dependencies
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/apt'
+mod 'puppetlabs/apache'
+mod 'puppetlabs/concat'
+mod 'puppetlabs/inifile'
+
+#Docker
+mod 'garethr/docker'
+
+# Vault
+mod 'jsok/vault'
+
+# Repomgmt
+mod 'puppetlabs/vcsrepo'
+
+# Consul
+mod 'mrjoshuap/dnsmasq'
+mod 'saz/resolv_conf'
+mod 'nanliu/staging'
+mod 'puppet/archive'
+mod 'KyleAnderson/consul'
